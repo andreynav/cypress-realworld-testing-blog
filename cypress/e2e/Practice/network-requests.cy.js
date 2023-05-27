@@ -50,5 +50,9 @@ describe("Network Requests", () => {
     // and assert that the response contains the correct number of posts
     // Hint: you will need to cy.wait() to wait upon the @posts alias.
     // https://docs.cypress.io/api/commands/wait
+    // cy.wait('@posts').then((response) => {
+    //   expect(response.response.body.length).to.equal(2);
+    // })
+    cy.wait('@posts').its('response.body').should('have.length', 2);
   });
 });
