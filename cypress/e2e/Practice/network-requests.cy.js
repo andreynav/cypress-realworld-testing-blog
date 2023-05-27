@@ -29,6 +29,9 @@ describe("Network Requests", () => {
   it("/api/posts returns the correct number of posts", () => {
     // Write an assertion that the route '/api/posts'
     // returns the correct number of posts.
+    cy.request('GET', '/api/posts').then((response) => {
+      expect(response.body.length).to.equal(2);
+    })
   });
 
   it("the posts.json fixture returns the correct number of posts", () => {
