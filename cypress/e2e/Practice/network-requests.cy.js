@@ -40,6 +40,9 @@ describe("Network Requests", () => {
     // There are 25 total posts in the fixture
     // Hint: You will need to use cy.fixture()
     // https://docs.cypress.io/api/commands/fixture
+    cy.fixture('posts').then((response) => {
+      expect(response.length).to.equal(25);
+    })
   });
 
   it("intercepts /api/posts and returns the correct number of posts", () => {
