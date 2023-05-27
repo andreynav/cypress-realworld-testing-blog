@@ -21,6 +21,9 @@ describe("Network Requests", () => {
     // returns a status code of 200
     // Hint: You will need to use cy.request()
     // https://docs.cypress.io/api/commands/request
+    cy.request('GET', '/api/posts').then((response) => {
+      expect(response.status).to.equal(200);
+    })
   });
 
   it("/api/posts returns the correct number of posts", () => {
