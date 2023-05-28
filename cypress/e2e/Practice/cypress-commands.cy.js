@@ -1,10 +1,4 @@
 describe("Custom Cypress Commands", () => {
-    // beforeEach(() => {
-    //     cy.intercept("GET", "http://localhost:3000/api/posts", (req) => {
-    //     }).as("posts");
-    //     cy.visit("http://localhost:3000");
-    // });
-
     it("uses cy.getAllPosts()to retrieve all posts from the /api/posts endpoint", () => {
       // Create a custom Cypress Command called 'getAllPosts' which uses
       // cy.request() to get all of the posts from the /api/posts endpoint
@@ -20,5 +14,8 @@ describe("Custom Cypress Commands", () => {
       // cy.request() to get the first post from the /api/posts endpoint
       // Then use this custom command in this test to assert that the id of the first post
       // is equal to 'pre-rendering'
+      cy.getFirstPost().then((post) => {
+          cy.wrap(post).its('id').should('equal','pre-rendering')
+      })
     });
 });
