@@ -5,9 +5,9 @@ describe("Important Cypress Methods", () => {
     // Hint: you will need to use cy.wrap() around the response.body before calling .invoke()
     // https://docs.cypress.io/api/commands/wrap
     cy.request('GET', 'http://localhost:3000/api/posts').then((response) => {
-        cy.wrap(response.body).invoke('slice', 0, 1)
-    }).then((res) => {
-      expect(res.length).to.equal(1)
+        cy.wrap(response.body)
+            .invoke('slice', 0, 1)
+            .should('have.length', 1)
     })
   });
 
@@ -18,6 +18,12 @@ describe("Important Cypress Methods", () => {
     // Hint: you will need to use cy.wrap() around the response.body before calling .invoke()
     // You will also need to use .its() twice.
     // https://docs.cypress.io/api/commands/wrap
+    cy.request('GET', 'http://localhost:3000/api/posts').then((response) => {
+        cy.wrap(response.body)
+            .its(0)
+            .its('id')
+            .should('equal', 'pre-rendering')
+    })
   });
 
   it("uses cy.within() to get the <h1> inside of the <header>", () => {
