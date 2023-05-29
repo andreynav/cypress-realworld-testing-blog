@@ -29,5 +29,9 @@ describe("Important Cypress Methods", () => {
   it("uses cy.within() to get the <h1> inside of the <header>", () => {
     // Use cy.within() to get the <h1> nested inside of the <header> element
     // Then assert that the <h1> contains the correct text.
+    cy.visit('http://localhost:3000')
+    cy.get('header').within((head) => {
+        cy.get('h1').contains('Real World Testing Blog')
+    })
   });
 });
